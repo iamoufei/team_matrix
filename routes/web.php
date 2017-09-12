@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+
+Route::get('/confirm_register/{confirm_code?}', 'Auth\RegisterController@confirmRegister');
+
+//Route::get('/mail/send', function (){
+//    Mail::to('hihere123@sina.com')->send(new \App\Mail\OrderShipped());
+//});
