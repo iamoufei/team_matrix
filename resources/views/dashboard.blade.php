@@ -13,7 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        Dashboard
+                        Dashboard. {{ session('user_profile')['status'] }}
                     </div>
                 </div>
             </div>

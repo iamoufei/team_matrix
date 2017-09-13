@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'close2life@126.com'),
-        'name' => env('MAIL_FROM_NAME', 'admin'),
+        'name' => env('MAIL_FROM_NAME', 'Admin'),
     ],
 
     /*

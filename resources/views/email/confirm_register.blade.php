@@ -10,10 +10,7 @@
                     <div class="panel-body">
                         Dear {{ $user->name }}<br />
                         Please check your email, and click confirm link to active your account.<br />
-                        <strong><a href="{{ "http://www." . $user->email }}">Go to check the email.</a></strong>
-
-                        <br />
-                        {{ $profile }}
+                        <strong><a href="{{ "http://mail." . $user->email }}">Go to check the email.</a></strong>
                     </div>
                 </div>
             </div>

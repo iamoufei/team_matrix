@@ -11,14 +11,18 @@ class RegisterConfirm extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $user_name;
+    protected $confirm_url;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user_name, $confirm_url)
     {
         //
+        $this->user_name = $user_name;
+        $this->confirm_url = $confirm_url;
     }
 
     /**
@@ -28,6 +32,10 @@ class RegisterConfirm extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('email.confirm_email')
+                    ->with([
+                        'name'=> $this->user_name,
+                        'confirm_url'=> $this->confirm_url,
+                    ]);
     }
 }

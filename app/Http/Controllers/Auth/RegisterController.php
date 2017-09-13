@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\RegisterConfirm;
 use App\User;
 use App\UserProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Crypt;
 
 class RegisterController extends Controller
 {
@@ -73,11 +76,23 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
+        $user_id = $user->id;
+        $user_name = $user->name;
+        // add new data in user profile
         $newProfile = new UserProfile;
-        $newProfile->user_id = $user->id;
+        $newProfile->user_id = $user_id;
         $newProfile->save();
 
-        $profile = \App\UserProfile::where('user_id', $user->id)->first();
+        // get this user's profile
+        $profile = UserProfile::where('user_id', $user_id)->first();
+
+        // create a confirm url with user id
+        $confirm_code = Crypt::encryptString($user_id);
+        $confirm_url = "http://team_matrix.dev/confirm_email/" . $confirm_code;
+
+        // send a confirm email with confirm url
+//        Mail::to($user->email)->queue(new RegisterConfirm($user_name , $confirm_url));
+
         return view('email.confirm_register', ['user'=>$user, 'profile'=>$profile]);
     }
 }

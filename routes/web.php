@@ -16,13 +16,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/confirm_email/{confirm_code}', 'HomeController@registerConfirm');
+
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::group(['middleware' =>  ['web', 'userProfile']], function () {
 
-
-Route::get('/confirm_register/{confirm_code?}', 'Auth\RegisterController@confirmRegister');
-
-//Route::get('/mail/send', function (){
-//    Mail::to('hihere123@sina.com')->send(new \App\Mail\OrderShipped());
-//});
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});

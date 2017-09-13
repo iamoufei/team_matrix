@@ -8,8 +8,9 @@
                     <div class="panel-heading">Almost closed</div>
 
                     <div class="panel-body">
+                        Dear {{ $name }}
                         Please click the following link to confirm your email and active your account at Team_Matrix.<br/>
-                        <strong><a href="{{ $confirm_url }}">Click to confirm >>></a></strong><br/>
+                        <strong><a href="{{ $confirm_url }}" target="_blank">Click to confirm >>></a></strong><br/>
                         If can not click the link, you can copy the following url, and open it in your browser :<br />
                         {{ $confirm_url }}
                     </div>
