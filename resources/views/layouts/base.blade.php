@@ -14,20 +14,20 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Team_Matrix') }}
-                </a>
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Team_Matrix') }}
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    @yield('content')
-</div>
+        @yield('content')
+    </div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

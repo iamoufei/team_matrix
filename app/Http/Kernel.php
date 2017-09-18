@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'userProfile' => \App\Http\Middleware\UserProfile::class,
+        'powerCheck' => \App\Http\Middleware\PowerCheck::class,
     ];
 }

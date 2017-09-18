@@ -8,9 +8,9 @@
                     <div class="panel-heading">Almost closed</div>
 
                     <div class="panel-body">
-                        Dear {{ $user->name }}<br />
+                        Dear {{ $user_name }}<br />
                         Please check your email, and click confirm link to active your account.<br />
-                        <strong><a href="{{ "http://mail." . $user->email }}">Go to check the email.</a></strong>
+                        <strong><a href="{{ $user_email }}">Go to check the email.</a></strong>
                     </div>
                 </div>
             </div>

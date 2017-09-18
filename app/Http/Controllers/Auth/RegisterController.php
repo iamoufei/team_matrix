@@ -84,7 +84,7 @@ class RegisterController extends Controller
         $newProfile->save();
 
         // get this user's profile
-        $profile = UserProfile::where('user_id', $user_id)->first();
+//        $profile = UserProfile::where('user_id', $user_id)->first();
 
         // create a confirm url with user id
         $confirm_code = Crypt::encryptString($user_id);
@@ -93,6 +93,10 @@ class RegisterController extends Controller
         // send a confirm email with confirm url
 //        Mail::to($user->email)->queue(new RegisterConfirm($user_name , $confirm_url));
 
-        return view('email.confirm_register', ['user'=>$user, 'profile'=>$profile]);
+        $user_name = $user->name;
+        $user_email = "http://mail." . explode('@', $user->email)[1];
+
+        session()->flush();
+        return view('email.confirm_register', ['user_name'=>$user_name, 'user_email'=>$user_email]);
     }
 }

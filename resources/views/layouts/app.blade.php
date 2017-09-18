@@ -12,8 +12,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
 </head>
 <body>
+    @php
+    $current_route = Route::currentRouteName();
+    @endphp
+    <div id="current_route" hidden>{{ $current_route }}</div>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -35,23 +41,22 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    @if((session('user_profile')!=null) && ((session('user_profile')->status)==='active'))
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Link</a></li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <li id="dashboard"><a href="/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
+                        <li id="task"><a href="/task">Task</a></li>
+                        @if((session('user_profile')->power)==='super')
+                        <li id="management" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
+                                <li><a href="/department">Department</a></li>
+                                <li><a href="/staff">Staff</a></li>
+                                <li><a href="/group">Group</a></li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -67,9 +72,6 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="/profile">
-                                            Profile
-                                        </a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -87,11 +89,14 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        @section('content')
+        @show
     </div>
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>
