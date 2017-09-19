@@ -32,6 +32,10 @@ Route::group(['middleware' =>  ['web', 'userProfile']], function () {
 
 
     Route::get('/department', 'DepartmentController@index')->name('department');
+
     Route::get('/staff', 'StaffController@index')->name('staff');
+    Route::post('/staff/update', 'StaffController@update')->name('staff_update');
+
+
     Route::get('/group', 'GroupController@index')->name('group');
 });
